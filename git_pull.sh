@@ -1,24 +1,30 @@
 #!/bin/bash
+
+# Read Arguments
+$git_repo=$1
+$path=$2
+$branch=$3
+
 #Git Clone / Git Pull
-cd $RD_OPTION_PATH
-echo "Path: ${RD_OPTION_PATH}"
-SUBDIRECTORY=`echo $RD_OPTION_GIT_REPOSITORY | cut -d "/" -f 5`
-SUBDIRECTORY="${SUBDIRECTORY}.${RD_OPTION_BRANCH}"
-echo "Subirectory: ${SUBDIRECTORY}"
-echo "Git Repository: ${RD_OPTION_GIT_REPOSITORY}"
+cd $path
+echo "Path: ${path}"
+subdirectory=`echo $git_repo | cut -d "/" -f 5`
+subdirectory="${subdirectory}.${branch}"
+echo "Subirectory: ${subdirectory}"
+echo "Git Repository: ${git_repo}"
 echo ""
 
-if [ -d "$SUBDIRECTORY" ]; then
+if [ -d "$subdirectory" ]; then
     echo "Pulling Repository..."
-    cd $SUBDIRECTORY
+    cd $subdirectory
     git pull
-    git checkout $RD_OPTION_BRANCH
+    git checkout $branch
     git pull
 else
     echo "Cloning Repository..."
-    git clone $RD_OPTION_GIT_REPOSITORY $SUBDIRECTORY
-    cd $SUBDIRECTORY
-    git checkout $RD_OPTION_BRANCH
+    git clone $git_repo $subdirectory
+    cd $subdirectory
+    git checkout $branch
 fi
 
 if [ -f "requirements.yml" ]; then
