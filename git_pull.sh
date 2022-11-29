@@ -33,7 +33,7 @@ if [ -f "requirements.yml" ]; then
     source /var/lib/rundeck/venvs/ansible7/bin/activate
     ansible-community --version
     echo ""
-    ansible-galaxy install -r requirements.yml -p ./roles
+    ansible-galaxy install --force -r requirements.yml -p ./roles
     echo ""
 fi
 echo "Clone/Pull Finished"
