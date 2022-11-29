@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Read Arguments
-$git_repo=$1
-$path=$2
-$branch=$3
+git_repo=$1
+path=$2
+branch=$3
 
 #Git Clone / Git Pull
 cd $path
